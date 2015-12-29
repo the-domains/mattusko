@@ -1,0 +1,28 @@
+name: Mattusko
+favicon: null
+layout_spectrum: 0.04275160166434944
+typography_spectrum: 0.04047131002880633
+cta:
+  domain: null
+  bucket: null
+  version: null
+analytics:
+  google: null
+  facebook: null
+  twitter: null
+opengraph:
+  image: null
+  type: null
+  appId: null
+color:
+  brandColors:
+    - '#fefefe'
+    - '#070506'
+    - '#53625d'
+    - '#849090'
+    - '#bdb1a5'
+  brandStrength: 0.6875
+  lightness: 0.5514574483968318
+  saturation: 0.8202705425210297
+  rhythmicContrast: 0.8875973774120212
+purpose: []
