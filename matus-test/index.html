@@ -1,4 +1,4 @@
-<!DOCTYPE HTML><html class="exporting wf-loading"><head><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/><title>matus test - Mattusko</title><link href="../rss.xml" title="Mattusko feed" rel="alternate" type="application/rss+xml"/><meta name="generator" content="The Grid taylor/0.16.25"><meta name="the-grid-solution" content="1e33acb8-35e5-4df0-ab50-8a66d1a9c265"><style href="./css/scale/mini.css" media="(max-width: 19.9376em)" rel="stylesheet">@media (max-width: 15.625em){html{font-size:3.09375em !important}}
+<!DOCTYPE HTML><html class="exporting wf-loading"><head><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/><title>matus test - Mattusko</title><link href="../rss.xml" title="Mattusko feed" rel="alternate" type="application/rss+xml"/><meta name="generator" content="The Grid taylor/0.17.3"><meta name="the-grid-solution" content="b74f34db-0fa6-40d1-9ea7-9f309fc8ce0b"><style href="./css/scale/mini.css" media="(max-width: 19.9376em)" rel="stylesheet">@media (max-width: 15.625em){html{font-size:3.09375em !important}}
 @media (min-width: 15.6875em)and (max-width: 15.75em){	html{font-size:3.28125em !important}}
 @media (min-width: 15.8125em)and (max-width: 16.25em){	html{font-size:3.375em !important}}
 @media (min-width: 16.3125em)and (max-width: 16.6875em){html{font-size:3.46875em !important}}
@@ -202,6 +202,14 @@ body {
 }
 .stack {
   z-index: 1;
+  transition: transform 0.3s ease-out;
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+}
+.group,
+.aside,
+.decoration {
+  transition: transform 0.3s ease-out;
+  -webkit-transition: -webkit-transform 0.3s ease-out;
 }
 picture {
   display: inline-block;
@@ -250,6 +258,9 @@ a:active {
   transition: color 0.1s ease-in, background-color 0.1s ease-out;
   -webkit-transition: color 0.1s ease-in, background-color 0.1s ease-out;
 }
+a.aside {
+  display: inline-block;
+}
 html.exporting a {
   transition: none;
 }
@@ -259,11 +270,21 @@ html.exporting a {
 .media > a {
   display: inline-block;
 }
+.media iframe {
+  transition: 0.3s opacity ease-in;
+  -webkit-transition: 0.3s opacity ease-in;
+}
 h1 a,
 h2 a,
 h3 a {
   font-weight: inherit;
   letter-spacing: inherit;
+}
+a {
+  -webkit-box-decoration-break: clone;
+  -ms-box-decoration-break: clone;
+  -moz-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 .text-decoration {
   -webkit-box-decoration-break: clone;
@@ -277,36 +298,50 @@ h3 a {
   margin-left: 1.5em;
 }
 .decoration {
-  position: relative;
   pointer-events: none;
+}
+.svg {
+  position: relative;
   background-color: currentColor;
 }
-.decoration > svg {
+.svg > svg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.decoration.connector > svg {
+.svg.connector > svg {
   width: 109%;
   height: 109%;
   margin-left: -2%;
 }
-.decoration path,
-.decoration ellipse,
-.decoration rect,
-.decoration polygon,
-.decoration circle {
+.svg path,
+.svg ellipse,
+.svg rect,
+.svg polygon,
+.svg circle {
   fill: currentColor;
 }
-.decoration mpath,
-.decoration line,
-.decoration polyline {
+.svg mpath,
+.svg line,
+.svg polyline {
   stroke: currentColor;
 }
-.svg.decoration {
+.svg {
   background-color: transparent;
+}
+.revealed .play.svg:after {
+  display: block;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  margin-top: -20px;
+  margin-left: -20px;
+  background-color: currentColor;
+  content: "";
 }
 .colors-style-aside-border .publisher,
 .colors-style-aside-border .author {
@@ -439,8 +474,9 @@ ul {
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img{height: 3.164rem; width: 4.214rem; position: absolute; top: 0rem; left: 0rem;}
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline{font-size: 0.524rem; line-height: 0.684rem; width: 4.204rem; position: absolute; top: 0rem; left: 0.124rem;}
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph{font-size: 0.164rem; line-height: 0.244rem; width: 4.204rem; position: absolute; top: 0.944rem; left: 0.124rem;}
-#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator{height: 0.164rem; width: 0.164rem; position: absolute; top: 0.734rem; left: 0.124rem;}
-#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); }
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator{height: 0.164rem; width: 0.164rem; position: absolute; left: 0.124rem; top: 0.734rem;}
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); color: rgb(146, 192, 119); }
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed :hover.media.cover { color: rgb(240, 246, 239); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .title.headline { color: rgb(52, 61, 41); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .title.headline a:hover { color: rgb(78, 98, 63); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .text.paragraph { color: rgb(37, 42, 29); }
@@ -457,7 +493,8 @@ ul {
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical{font-size: 0.164rem; line-height: 0.244rem; height: 3.584rem; width: 4.444rem; position: absolute; top: 0rem; left: 0.124rem;}
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover{overflow: hidden; width: 4.444rem; height: 3.344rem; position: absolute; top: 0.124rem; left: 0rem;}
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img{height: 3.344rem; width: 4.454rem; position: absolute; top: 0rem; left: 0rem;}
-#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); }
+#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); color: rgb(146, 192, 119); }
+#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical :hover.media.cover { color: rgb(240, 246, 239); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a { color: rgb(37, 43, 29); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a:hover { color: rgb(0, 0, 0); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a:active { color: rgb(0, 0, 0); }
@@ -517,8 +554,9 @@ display: none;
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img{height: 4.734rem; width: 6.314rem; position: absolute; top: 0rem; left: 0rem;}
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline{font-size: 0.524rem; line-height: 0.684rem; width: 6.304rem; position: absolute; top: 0rem; left: 0.184rem;}
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph{font-size: 0.164rem; line-height: 0.244rem; width: 6.304rem; position: absolute; top: 0.994rem; left: 0.184rem;}
-#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator{height: 0.164rem; width: 0.164rem; position: absolute; top: 0.764rem; left: 0.184rem;}
-#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); }
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator{height: 0.164rem; width: 0.164rem; position: absolute; left: 0.184rem; top: 0.764rem;}
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); color: rgb(146, 192, 119); }
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed :hover.media.cover { color: rgb(240, 246, 239); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .title.headline { color: rgb(52, 61, 41); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .title.headline a:hover { color: rgb(78, 98, 63); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .text.paragraph { color: rgb(37, 42, 29); }
@@ -535,7 +573,8 @@ display: none;
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical{font-size: 0.164rem; line-height: 0.244rem; height: 5.164rem; width: 6.664rem; position: absolute; top: 0rem; left: 0.194rem;}
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover{overflow: hidden; width: 6.664rem; height: 4.814rem; position: absolute; top: 0.184rem; left: 0rem;}
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img{height: 5rem; width: 6.664rem; position: absolute; top: -0.094rem; left: 0rem;}
-#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); }
+#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); color: rgb(146, 192, 119); }
+#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical :hover.media.cover { color: rgb(240, 246, 239); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a { color: rgb(37, 43, 29); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a:hover { color: rgb(0, 0, 0); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a:active { color: rgb(0, 0, 0); }
@@ -595,8 +634,9 @@ display: none;
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img{height: 3.254rem; width: 4.334rem; position: absolute; top: 0rem; left: 0rem;}
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline{font-size: 0.524rem; line-height: 0.684rem; width: 4.324rem; position: absolute; top: 0.064rem; left: 1.444rem;}
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph{font-size: 0.164rem; line-height: 0.244rem; width: 4.324rem; position: absolute; top: 1.104rem; left: 1.444rem;}
-#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator{height: 0.164rem; width: 0.164rem; position: absolute; top: 0.844rem; left: 1.444rem;}
-#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); }
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator{height: 0.164rem; width: 0.164rem; position: absolute; left: 1.444rem; top: 0.844rem;}
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); color: rgb(146, 192, 119); }
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed :hover.media.cover { color: rgb(240, 246, 239); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .title.headline { color: rgb(52, 61, 41); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .title.headline a:hover { color: rgb(78, 98, 63); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .text.paragraph { color: rgb(37, 42, 29); }
@@ -613,7 +653,8 @@ display: none;
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical{font-size: 0.164rem; line-height: 0.244rem; height: 5.714rem; width: 7.444rem; position: absolute; top: 0rem; left: 0.964rem;}
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover{overflow: hidden; width: 7.444rem; height: 5.594rem; position: absolute; top: 0.064rem; left: 0rem;}
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img{height: 5.594rem; width: 7.454rem; position: absolute; top: 0rem; left: 0rem;}
-#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); }
+#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); color: rgb(146, 192, 119); }
+#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical :hover.media.cover { color: rgb(240, 246, 239); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a { color: rgb(37, 43, 29); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a:hover { color: rgb(0, 0, 0); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a:active { color: rgb(0, 0, 0); }
@@ -673,8 +714,9 @@ display: none;
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img{height: 4.874rem; width: 6.494rem; position: absolute; top: 0rem; left: 0rem;}
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline{font-size: 0.524rem; line-height: 0.684rem; width: 6.484rem; position: absolute; top: 0.094rem; left: 2.164rem;}
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph{font-size: 0.164rem; line-height: 0.244rem; width: 6.484rem; position: absolute; top: 1.224rem; left: 2.164rem;}
-#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator{height: 0.164rem; width: 0.164rem; position: absolute; top: 0.924rem; left: 2.164rem;}
-#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); }
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator{height: 0.164rem; width: 0.164rem; position: absolute; left: 2.164rem; top: 0.924rem;}
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); color: rgb(146, 192, 119); }
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed :hover.media.cover { color: rgb(240, 246, 239); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .title.headline { color: rgb(52, 61, 41); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .title.headline a:hover { color: rgb(78, 98, 63); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .text.paragraph { color: rgb(37, 42, 29); }
@@ -691,7 +733,8 @@ display: none;
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical{font-size: 0.164rem; line-height: 0.244rem; height: 7.834rem; width: 10.804rem; position: absolute; top: 0rem; left: 1.444rem;}
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover{overflow: hidden; width: 10.804rem; height: 7.654rem; position: absolute; top: 0.094rem; left: 0rem;}
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img{height: 8.104rem; width: 10.804rem; position: absolute; top: -0.224rem; left: 0rem;}
-#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); }
+#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); color: rgb(146, 192, 119); }
+#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical :hover.media.cover { color: rgb(240, 246, 239); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a { color: rgb(37, 43, 29); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a:hover { color: rgb(0, 0, 0); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a:active { color: rgb(0, 0, 0); }
@@ -751,8 +794,9 @@ display: none;
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img{height: 6.084rem; width: 8.104rem; position: absolute; top: 0rem; left: 0rem;}
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline{font-size: 0.654rem; line-height: 0.854rem; width: 8.104rem; position: absolute; top: 0.124rem; left: 2.704rem;}
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph{font-size: 0.204rem; line-height: 0.304rem; width: 8.104rem; position: absolute; top: 1.534rem; left: 2.704rem;}
-#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator{height: 0.204rem; width: 0.204rem; position: absolute; top: 1.154rem; left: 2.704rem;}
-#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); }
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator{height: 0.204rem; width: 0.204rem; position: absolute; left: 2.704rem; top: 1.154rem;}
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); color: rgb(146, 192, 119); }
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed :hover.media.cover { color: rgb(240, 246, 239); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .title.headline { color: rgb(52, 61, 41); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .title.headline a:hover { color: rgb(78, 98, 63); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .text.paragraph { color: rgb(37, 42, 29); }
@@ -769,7 +813,8 @@ display: none;
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical{font-size: 0.204rem; line-height: 0.304rem; height: 10.694rem; width: 13.954rem; position: absolute; top: 0rem; left: 1.804rem;}
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover{overflow: hidden; width: 13.954rem; height: 10.464rem; position: absolute; top: 0.124rem; left: 0rem;}
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img{height: 10.464rem; width: 13.954rem; position: absolute; top: 0rem; left: 0.0149rem;}
-#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); }
+#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); color: rgb(146, 192, 119); }
+#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical :hover.media.cover { color: rgb(240, 246, 239); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a { color: rgb(37, 43, 29); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a:hover { color: rgb(0, 0, 0); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a:active { color: rgb(0, 0, 0); }
@@ -829,8 +874,9 @@ display: none;
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img{height: 6.084rem; width: 8.114rem; position: absolute; top: 0rem; left: 0rem;}
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline{font-size: 0.494rem; line-height: 0.644rem; width: 8.104rem; position: absolute; top: 0.124rem; left: 2.704rem;}
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph{font-size: 0.154rem; line-height: 0.234rem; width: 8.104rem; position: absolute; top: 1.274rem; left: 2.704rem;}
-#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator{height: 0.154rem; width: 0.154rem; position: absolute; top: 0.944rem; left: 2.704rem;}
-#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); }
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator{height: 0.154rem; width: 0.154rem; position: absolute; left: 2.704rem; top: 0.944rem;}
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); color: rgb(146, 192, 119); }
+#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed :hover.media.cover { color: rgb(240, 246, 239); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .title.headline { color: rgb(52, 61, 41); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .title.headline a:hover { color: rgb(78, 98, 63); }
 #u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc#u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc .group.mixed > .text.paragraph { color: rgb(37, 42, 29); }
@@ -847,7 +893,8 @@ display: none;
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical{font-size: 0.154rem; line-height: 0.234rem; height: 10.234rem; width: 13.504rem; position: absolute; top: 0rem; left: 1.804rem;}
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover{overflow: hidden; width: 13.504rem; height: 10rem; position: absolute; top: 0.124rem; left: 0rem;}
 #u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img#u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img{height: 10.134rem; width: 13.504rem; position: absolute; top: -0.064rem; left: 0.0149rem;}
-#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); }
+#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical > .media.cover { background-image: linear-gradient(rgb(52, 61, 41), rgb(146, 192, 119)); color: rgb(146, 192, 119); }
+#u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 .group.graphical :hover.media.cover { color: rgb(240, 246, 239); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a { color: rgb(37, 43, 29); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a:hover { color: rgb(0, 0, 0); }
 #u-267ee7d5-a000-4f87-9573-6892572c6a89#u-267ee7d5-a000-4f87-9573-6892572c6a89 a:active { color: rgb(0, 0, 0); }
@@ -879,7 +926,7 @@ wbr.w1800{ display: block }
  #u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-desktop-l-one-3 {
 display: none;
 }
-}</style></head><body><div class="layout-system rust mobile" id="page-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9"><section kind="layout" style="position: relative" sequence="one" role="header" diff_index="0" index="one" class="layout one i first_layout w_headline w_title w_separator w_decoration w_leader w_trailer w_icon w_short_headline w_short_title layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-mobile-l-one"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_titles layout one i first_layout last_layout header layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-mobile-l-one-l-one"></div></section><section kind="layout" style="position: relative" sequence="one" role="article" diff_index="0" index="one" class="layout one i w_cover w_media w_headline w_title w_paragraph w_text w_separator w_decoration w_leader w_trailer media_gte_narrow media_gte_half media_gte_wide media_gte_full media_landscape crop_true w_short_headline w_short_title w_short_paragraph w_short_text w_connector layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-mobile-l-one-2"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_medias colors-use-same-as-previous layout one i first_layout last_layout article layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-mobile-l-one-2-l-one"></div></section><section kind="layout" style="position: relative" sequence="one" role="footer" diff_index="0" index="one" class="layout one i last_layout w_headline w_title w_separator w_decoration w_leader w_trailer w_icon w_short_headline w_short_title layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-mobile-l-one-3"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_titles layout one i first_layout last_layout footer layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-mobile-l-one-3-l-one"></div><style id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-color">body{background-color: rgba(201, 224, 187, 1)}</style></section><article subject="panel" class="col-1 export-linebreaks not_decorated color_adjust_none color_styles_no_group_bg color_schema_default stack_transparency_off v_emphasis_none h_emphasis_none group_overlap_none stack_v_outset_none stack_v_inset_none stack_h_outset_none stack_h_inset_xsmall stack_h_align_center uninverted vertical collapsed full line_padding_aside_inside text_width_full group_h_align_none text_align_center flow_unreversed group_v_outset_none group_v_inset_none group_h_outset_none group_h_inset_xsmall flow_vertical font_size_small panel stack heading i first_panel last_panel w_headline w_title w_decoration w_short_headline w_short_title stack heading" itemid="u-page-nav" itemtype="nav" diff_index="2" index="heading" kind="stack" score="1.875" missed="0.125" tag="article" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-nav"><div kind="group" index="heading" class="group heading group heading" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-nav-g-heading"><h1 kind="title" index="headline" class="short short_headline short_title title headline vfld-leader vfld-trailer title headline" specificity="0.25" itemprop="title" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-nav-g-heading-t-headline"><a class="text-decoration" href="../index.html" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-nav-g-heading-t-headline-a">Mattusko</a></h1></div></article><article subject="chapter" class="col-1 export-linebreaks not_decorated color_adjust_none color_styles_no_group_bg color_schema_default stack_transparency_off v_emphasis_none h_emphasis_none group_overlap_none stack_v_outset_none stack_v_inset_none stack_h_outset_none stack_h_inset_xsmall stack_h_align_stretch uninverted vertical collapsed full aspect_natural line_padding_aside_inside text_width_wider group_h_align_center text_align_left flow_unreversed group_v_outset_none group_v_inset_none group_h_outset_none group_h_inset_xsmall flow_vertical font_size_large chapter stack mixed i first_chapter w_cover w_media w_headline w_title w_paragraph w_text w_separator w_decoration media_gte_narrow media_gte_half media_gte_wide media_gte_full media_landscape crop_true w_short_headline w_short_title w_short_paragraph w_short_text stack mixed" itemid="4c7280f9-8666-446d-9f13-fa9a8b5af8cc" itemtype="image" diff_index="0" index="mixed" kind="stack" score="8.75" missed="0.25" tag="article" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc"><div kind="group" index="mixed" class="group mixed group mixed" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed"><a kind="media" index="cover" class="vfld media cover vfld-trailer media cover" specificity="0.25" itemprop="cover" max-width="2592" max-height="1944" href="https://s3-us-west-2.amazonaws.com/the-grid-img/p/7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover"><picture id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img" class=""><!--[if IE 9]><video style="display: none;"><![endif]--><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/1f5e9cba7fe4614088466d9ec3983453/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=608&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=810, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/e9b428f63741ce07e60d691d5a96a104/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1216&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1620 2x" media="(min-width: 1441px) and (min-width: 1441px) and (max-width: 1799px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/acc2b2ddfdc30c11b4353d1738be2821/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=608&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=811, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/2b3755fbba91790f78217fc9fbed8df4/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1216&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1622 2x" media="(min-width: 1441px) and (min-width: 1800px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/ae65619208e5675038ac2ff4ad0ad5da/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=325&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=433, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/5006b1ed1e8f633b563d3fe262c822ac/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=650&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=866 2x" media="(min-width: 721px) and (min-width: 721px) and (max-width: 960px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/c1ba5b800bcd480a505ae81187e5c2b4/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=487&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=649, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/d18516ba318e6fce76a8dcc6cba97e7f/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=974&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1298 2x" media="(min-width: 721px) and (min-width: 961px) and (max-width: 1440px)" /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/e0747839c1f958cd6d49bf3e4f1bee17/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=316&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=421, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/9c3b077d6e7053df6c510c64fd5e83fb/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=632&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=842 2x" media="(min-width: 1px) and (max-width: 480px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/d88302a38b4e96edcf3ba940573dfedb/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=474&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=631, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/9c20426be0baf5b6219232a99f45b15c/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=948&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1262 2x" media="(min-width: 1px) and (min-width: 481px) and (max-width: 720px)" /><!--[if IE 9]></video><![endif]--><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="  /></picture></a><h1 kind="title" index="headline" class="short short_headline short_title title headline vfld-leader title headline" specificity="0.25" itemprop="title" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline"><span class="text-decoration" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline-span">matus test</span></h1><div kind="text" index="paragraph" class="text-decoration short short_paragraph short_text text paragraph text paragraph" specificity="0.25" itemprop="text" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph"><p><span class="first-letter">M</span>atus test</p></div><div kind="decoration" index="separator" class="decoration separator decoration separator" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator"></div></div></article><article subject="chapter" class="col-1 export-linebreaks not_decorated color_adjust_none color_styles_no_group_bg color_schema_default stack_transparency_off v_emphasis_none h_emphasis_none group_overlap_none stack_v_outset_none stack_v_inset_none stack_h_outset_none stack_h_inset_xsmall stack_h_align_stretch uninverted vertical collapsed full aspect_natural line_padding_aside_inside text_width_wider group_h_align_center text_align_left flow_unreversed group_v_outset_none group_v_inset_none group_h_outset_none group_h_inset_xsmall flow_vertical font_size_article chapter stack graphical i last_chapter w_cover w_media w_decoration media_gte_narrow media_gte_half media_gte_wide media_gte_full media_landscape crop_true stack graphical" itemid="267ee7d5-a000-4f87-9573-6892572c6a89" itemtype="image" diff_index="5" index="graphical" kind="stack" score="3" tag="article" id="u-267ee7d5-a000-4f87-9573-6892572c6a89"><div kind="group" index="graphical" class="group graphical group graphical" id="u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical"><a kind="media" index="cover" class="vfld media cover vfld-leader vfld-trailer media cover" specificity="0.25" itemprop="cover" max-width="2592" max-height="1944" href="https://s3-us-west-2.amazonaws.com/the-grid-img/p/5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg" id="u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover"><picture id="u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img" class=""><!--[if IE 9]><video style="display: none;"><![endif]--><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/60bfdcc7b268edc734c94ff7df308b30/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1046&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1395, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/088c56d6d84f03e5d9b47a2df2d7bae2/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1944&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=2592 2x" media="(min-width: 1441px) and (min-width: 1441px) and (max-width: 1799px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/ade769aa8b5595f48d07595f423a523f/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1014&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1350, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/088c56d6d84f03e5d9b47a2df2d7bae2/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1944&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=2592 2x" media="(min-width: 1441px) and (min-width: 1800px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/3276c4c5f89cd5e7ff95154a4f02907d/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=559&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=745, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/7b4486ef25bcceacc5684d1e19c6487f/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1118&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1490 2x" media="(min-width: 721px) and (min-width: 721px) and (max-width: 960px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/44412e244447465adc76e28ce8b7b84d/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=810&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1080, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/aa81e530c286b12edd1596c6a8c9a7b6/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1620&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=2160 2x" media="(min-width: 721px) and (min-width: 961px) and (max-width: 1440px)" /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/aef4ef8006f064133a819641d156bf57/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=334&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=445, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/4622dda97d9ec28cb5e18433009979ac/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=668&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=890 2x" media="(min-width: 1px) and (max-width: 480px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/1a600049a4fae58e31b829a6ed11f664/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=500&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=666, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/5c0dfa8d6019af93c92228887dc1e669/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1000&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1332 2x" media="(min-width: 1px) and (min-width: 481px) and (max-width: 720px)" /><!--[if IE 9]></video><![endif]--><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="  /></picture></a></div></article><article subject="panel" class="col-1 export-linebreaks not_decorated color_adjust_none color_styles_no_group_bg color_schema_default stack_transparency_off v_emphasis_none h_emphasis_none group_overlap_none stack_v_outset_none stack_v_inset_none stack_h_outset_none stack_h_inset_xsmall stack_h_align_center uninverted vertical collapsed full line_padding_aside_inside text_width_full group_h_align_none text_align_center flow_unreversed group_v_outset_none group_v_inset_none group_h_outset_none group_h_inset_xsmall flow_vertical font_size_small panel stack heading i first_panel last_panel w_headline w_title w_decoration w_short_headline w_short_title stack heading" itemid="u-page-alternate" itemtype="alternate" diff_index="2" index="heading" kind="stack" score="1.875" missed="0.125" tag="article" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-alternate"><div kind="group" index="heading" class="group heading group heading" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-alternate-g-heading"><h1 kind="title" index="headline" class="short short_headline short_title title headline vfld-leader vfld-trailer title headline" specificity="0.25" itemprop="title" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-alternate-g-heading-t-headline"><a class="text-decoration" href="../rss.xml" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-alternate-g-heading-t-headline-a">Mattusko feed</a></h1></div></article><section kind="layout" style="position: relative" sequence="one" role="header" diff_index="0" index="one" class="layout one i first_layout w_headline w_title w_separator w_decoration w_leader w_trailer w_icon w_short_headline w_short_title layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-desktop-l-one"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_titles layout one i first_layout last_layout header layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-desktop-l-one-l-one"></div></section><section kind="layout" style="position: relative" sequence="one" role="article" diff_index="0" index="one" class="layout one i w_cover w_media w_headline w_title w_paragraph w_text w_separator w_decoration w_leader w_trailer media_gte_narrow media_gte_half media_gte_wide media_gte_full media_landscape crop_true w_short_headline w_short_title w_short_paragraph w_short_text w_connector layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-desktop-l-one-2"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_medias colors-use-same-as-previous layout one i first_layout last_layout article layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-desktop-l-one-2-l-one"></div></section><section kind="layout" style="position: relative" sequence="one" role="footer" diff_index="0" index="one" class="layout one i last_layout w_headline w_title w_separator w_decoration w_leader w_trailer w_icon w_short_headline w_short_title layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-desktop-l-one-3"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_titles layout one i first_layout last_layout footer layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-desktop-l-one-3-l-one"></div><style id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-color">body{background-color: rgba(201, 224, 187, 1)}</style></section><section kind="layout" style="position: relative" sequence="one" role="header" diff_index="0" index="one" class="layout one i first_layout w_headline w_title w_separator w_decoration w_leader w_trailer w_icon w_short_headline w_short_title layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-cinema-l-one"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_titles layout one i first_layout last_layout header layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-cinema-l-one-l-one"></div></section><section kind="layout" style="position: relative" sequence="one" role="article" diff_index="0" index="one" class="layout one i w_cover w_media w_headline w_title w_paragraph w_text w_separator w_decoration w_leader w_trailer media_gte_narrow media_gte_half media_gte_wide media_gte_full media_landscape crop_true w_short_headline w_short_title w_short_paragraph w_short_text w_connector layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-cinema-l-one-2"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_medias colors-use-same-as-previous layout one i first_layout last_layout article layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-cinema-l-one-2-l-one"></div></section><section kind="layout" style="position: relative" sequence="one" role="footer" diff_index="0" index="one" class="layout one i last_layout w_headline w_title w_separator w_decoration w_leader w_trailer w_icon w_short_headline w_short_title layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-cinema-l-one-3"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_titles layout one i first_layout last_layout footer layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-cinema-l-one-3-l-one"></div><style id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-color">body{background-color: rgba(201, 224, 187, 1)}</style></section></div><script href="./client.js">(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+}</style></head><body><div class="layout-system rust mobile" id="page-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9"><section kind="layout" style="position: relative" sequence="one" role="header" diff_index="0" index="one" class="layout one i first_layout w_headline w_title w_separator w_decoration w_leader w_trailer w_icon w_short_headline w_short_title layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-mobile-l-one"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_titles layout one i first_layout last_layout header layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-mobile-l-one-l-one"></div></section><section kind="layout" style="position: relative" sequence="one" role="article" diff_index="0" index="one" class="layout one i w_cover w_media w_headline w_title w_paragraph w_text w_separator w_decoration w_leader w_trailer media_gte_narrow media_gte_half media_gte_wide media_gte_full media_landscape crop_true w_short_headline w_short_title w_short_paragraph w_short_text w_connector layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-mobile-l-one-2"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_medias colors-use-same-as-previous layout one i first_layout last_layout article layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-mobile-l-one-2-l-one"></div></section><section kind="layout" style="position: relative" sequence="one" role="footer" diff_index="0" index="one" class="layout one i last_layout w_headline w_title w_separator w_decoration w_leader w_trailer w_icon w_short_headline w_short_title layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-mobile-l-one-3"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_titles layout one i first_layout last_layout footer layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-mobile-l-one-3-l-one"></div><style id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-color">body{background-color: rgba(201, 224, 187, 1)}</style></section><article subject="panel" class="col-1 export-linebreaks not_decorated color_adjust_none color_styles_no_group_bg color_schema_default stack_transparency_off v_emphasis_none h_emphasis_none group_overlap_none stack_v_outset_none stack_v_inset_none stack_h_outset_none stack_h_inset_xsmall stack_h_align_center uninverted vertical collapsed full line_padding_aside_inside text_width_full group_h_align_none text_align_center flow_unreversed group_v_outset_none group_v_inset_none group_h_outset_none group_h_inset_xsmall flow_vertical font_size_small panel stack heading i first_panel last_panel w_headline w_title w_decoration w_short_headline w_short_title stack heading" itemid="u-page-nav" itemtype="nav" diff_index="2" index="heading" kind="stack" score="1.875" missed="0.125" tag="article" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-nav"><div kind="group" index="heading" class="group heading group heading" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-nav-g-heading"><h1 kind="title" index="headline" class="short short_headline short_title title headline vfld-leader vfld-trailer title headline" specificity="0.25" itemprop="title" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-nav-g-heading-t-headline"><a class="text-decoration" href="../index.html" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-nav-g-heading-t-headline-a">Mattusko</a></h1></div></article><article subject="chapter" class="col-1 export-linebreaks not_decorated color_adjust_none color_styles_no_group_bg color_schema_default stack_transparency_off v_emphasis_none h_emphasis_none group_overlap_none stack_v_outset_none stack_v_inset_none stack_h_outset_none stack_h_inset_xsmall stack_h_align_stretch uninverted vertical collapsed full aspect_natural line_padding_aside_inside text_width_wider group_h_align_center text_align_left flow_unreversed group_v_outset_none group_v_inset_none group_h_outset_none group_h_inset_xsmall flow_vertical font_size_large chapter stack mixed i first_chapter w_cover w_media w_headline w_title w_paragraph w_text w_separator w_decoration media_gte_narrow media_gte_half media_gte_wide media_gte_full media_landscape crop_true w_short_headline w_short_title w_short_paragraph w_short_text stack mixed" itemid="4c7280f9-8666-446d-9f13-fa9a8b5af8cc" itemtype="image" diff_index="0" index="mixed" kind="stack" score="4.75" missed="0.25" tag="article" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc"><div kind="group" index="mixed" class="group mixed group mixed" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed"><a kind="media" index="cover" class="vfld media cover vfld-trailer media cover" specificity="0.25" itemprop="cover" max-width="2592" max-height="1944" href="https://s3-us-west-2.amazonaws.com/the-grid-img/p/7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover"><picture id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-m-cover-img" class=""><!--[if IE 9]><video style="display: none;"><![endif]--><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/1f5e9cba7fe4614088466d9ec3983453/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=608&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=810, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/e9b428f63741ce07e60d691d5a96a104/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1216&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1620 2x" media="(min-width: 1441px) and (min-width: 1441px) and (max-width: 1799px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/acc2b2ddfdc30c11b4353d1738be2821/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=608&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=811, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/2b3755fbba91790f78217fc9fbed8df4/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1216&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1622 2x" media="(min-width: 1441px) and (min-width: 1800px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/ae65619208e5675038ac2ff4ad0ad5da/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=325&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=433, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/5006b1ed1e8f633b563d3fe262c822ac/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=650&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=866 2x" media="(min-width: 721px) and (min-width: 721px) and (max-width: 960px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/c1ba5b800bcd480a505ae81187e5c2b4/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=487&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=649, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/d18516ba318e6fce76a8dcc6cba97e7f/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=974&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1298 2x" media="(min-width: 721px) and (min-width: 961px) and (max-width: 1440px)" /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/e0747839c1f958cd6d49bf3e4f1bee17/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=316&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=421, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/9c3b077d6e7053df6c510c64fd5e83fb/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=632&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=842 2x" media="(min-width: 1px) and (max-width: 480px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/d88302a38b4e96edcf3ba940573dfedb/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=474&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=631, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/9c20426be0baf5b6219232a99f45b15c/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=948&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F7af190bdfdac63df3b219cada157ed8ebd687cdf.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1262 2x" media="(min-width: 1px) and (min-width: 481px) and (max-width: 720px)" /><!--[if IE 9]></video><![endif]--><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="  /></picture></a><h1 kind="title" index="headline" class="short short_headline short_title title headline vfld-leader title headline" specificity="0.25" itemprop="title" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline"><span class="text-decoration" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-headline-span">matus test</span></h1><div kind="text" index="paragraph" class="text-decoration short short_paragraph short_text text paragraph text paragraph" specificity="0.25" itemprop="text" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-t-paragraph"><p><span class="first-letter">M</span>atus test</p></div><div kind="decoration" index="separator" class="decoration separator decoration separator" id="u-4c7280f9-8666-446d-9f13-fa9a8b5af8cc-g-mixed-d-separator"></div></div></article><article subject="chapter" class="col-1 export-linebreaks not_decorated color_adjust_none color_styles_no_group_bg color_schema_default stack_transparency_off v_emphasis_none h_emphasis_none group_overlap_none stack_v_outset_none stack_v_inset_none stack_h_outset_none stack_h_inset_xsmall stack_h_align_stretch uninverted vertical collapsed full aspect_natural line_padding_aside_inside text_width_wider group_h_align_center text_align_left flow_unreversed group_v_outset_none group_v_inset_none group_h_outset_none group_h_inset_xsmall flow_vertical font_size_article chapter stack graphical i last_chapter w_cover w_media w_decoration media_gte_narrow media_gte_half media_gte_wide media_gte_full media_landscape crop_true stack graphical" itemid="267ee7d5-a000-4f87-9573-6892572c6a89" itemtype="image" diff_index="5" index="graphical" kind="stack" score="3" tag="article" id="u-267ee7d5-a000-4f87-9573-6892572c6a89"><div kind="group" index="graphical" class="group graphical group graphical" id="u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical"><a kind="media" index="cover" class="vfld media cover vfld-leader vfld-trailer media cover" specificity="0.25" itemprop="cover" max-width="2592" max-height="1944" href="https://s3-us-west-2.amazonaws.com/the-grid-img/p/5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg" id="u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover"><picture id="u-267ee7d5-a000-4f87-9573-6892572c6a89-g-graphical-m-cover-img" class=""><!--[if IE 9]><video style="display: none;"><![endif]--><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/60bfdcc7b268edc734c94ff7df308b30/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1046&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1395, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/088c56d6d84f03e5d9b47a2df2d7bae2/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1944&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=2592 2x" media="(min-width: 1441px) and (min-width: 1441px) and (max-width: 1799px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/ade769aa8b5595f48d07595f423a523f/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1014&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1350, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/088c56d6d84f03e5d9b47a2df2d7bae2/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1944&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=2592 2x" media="(min-width: 1441px) and (min-width: 1800px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/3276c4c5f89cd5e7ff95154a4f02907d/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=559&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=745, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/7b4486ef25bcceacc5684d1e19c6487f/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1118&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1490 2x" media="(min-width: 721px) and (min-width: 721px) and (max-width: 960px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/44412e244447465adc76e28ce8b7b84d/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=810&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1080, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/aa81e530c286b12edd1596c6a8c9a7b6/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1620&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=2160 2x" media="(min-width: 721px) and (min-width: 961px) and (max-width: 1440px)" /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/aef4ef8006f064133a819641d156bf57/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=334&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=445, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/4622dda97d9ec28cb5e18433009979ac/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=668&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=890 2x" media="(min-width: 1px) and (max-width: 480px) " /><source srcset="https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/1a600049a4fae58e31b829a6ed11f664/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=500&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=666, https://imgflo.herokuapp.com/graph/vahj1ThiexotieMo/5c0dfa8d6019af93c92228887dc1e669/gradientmap.jpg?color1=%23162112&color2=%232B4125&color3=%23578349&color4=%23ABCF96&color5=%23E3EFDC&height=1000&input=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fthe-grid-img%2Fp%2F5dea42788be351cc396fe5ab7e860d7ebd183bf8.jpg&srgb=True&stop1=0.1&stop2=0.3&stop3=0.5&stop4=0.7&stop5=0.9&width=1332 2x" media="(min-width: 1px) and (min-width: 481px) and (max-width: 720px)" /><!--[if IE 9]></video><![endif]--><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="  /></picture></a></div></article><article subject="panel" class="col-1 export-linebreaks not_decorated color_adjust_none color_styles_no_group_bg color_schema_default stack_transparency_off v_emphasis_none h_emphasis_none group_overlap_none stack_v_outset_none stack_v_inset_none stack_h_outset_none stack_h_inset_xsmall stack_h_align_center uninverted vertical collapsed full line_padding_aside_inside text_width_full group_h_align_none text_align_center flow_unreversed group_v_outset_none group_v_inset_none group_h_outset_none group_h_inset_xsmall flow_vertical font_size_small panel stack heading i first_panel last_panel w_headline w_title w_decoration w_short_headline w_short_title stack heading" itemid="u-page-alternate" itemtype="alternate" diff_index="2" index="heading" kind="stack" score="1.875" missed="0.125" tag="article" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-alternate"><div kind="group" index="heading" class="group heading group heading" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-alternate-g-heading"><h1 kind="title" index="headline" class="short short_headline short_title title headline vfld-leader vfld-trailer title headline" specificity="0.25" itemprop="title" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-alternate-g-heading-t-headline"><a class="text-decoration" href="../rss.xml" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-alternate-g-heading-t-headline-a">Mattusko feed</a></h1></div></article><section kind="layout" style="position: relative" sequence="one" role="header" diff_index="0" index="one" class="layout one i first_layout w_headline w_title w_separator w_decoration w_leader w_trailer w_icon w_short_headline w_short_title layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-desktop-l-one"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_titles layout one i first_layout last_layout header layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-desktop-l-one-l-one"></div></section><section kind="layout" style="position: relative" sequence="one" role="article" diff_index="0" index="one" class="layout one i w_cover w_media w_headline w_title w_paragraph w_text w_separator w_decoration w_leader w_trailer media_gte_narrow media_gte_half media_gte_wide media_gte_full media_landscape crop_true w_short_headline w_short_title w_short_paragraph w_short_text w_connector layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-desktop-l-one-2"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_medias colors-use-same-as-previous layout one i first_layout last_layout article layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-desktop-l-one-2-l-one"></div></section><section kind="layout" style="position: relative" sequence="one" role="footer" diff_index="0" index="one" class="layout one i last_layout w_headline w_title w_separator w_decoration w_leader w_trailer w_icon w_short_headline w_short_title layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-desktop-l-one-3"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_titles layout one i first_layout last_layout footer layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-desktop-l-one-3-l-one"></div><style id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-color">body{background-color: rgba(201, 224, 187, 1)}</style></section><section kind="layout" style="position: relative" sequence="one" role="header" diff_index="0" index="one" class="layout one i first_layout w_headline w_title w_separator w_decoration w_leader w_trailer w_icon w_short_headline w_short_title layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-cinema-l-one"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_titles layout one i first_layout last_layout header layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-cinema-l-one-l-one"></div></section><section kind="layout" style="position: relative" sequence="one" role="article" diff_index="0" index="one" class="layout one i w_cover w_media w_headline w_title w_paragraph w_text w_separator w_decoration w_leader w_trailer media_gte_narrow media_gte_half media_gte_wide media_gte_full media_landscape crop_true w_short_headline w_short_title w_short_paragraph w_short_text w_connector layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-cinema-l-one-2"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_medias colors-use-same-as-previous layout one i first_layout last_layout article layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-cinema-l-one-2-l-one"></div></section><section kind="layout" style="position: relative" sequence="one" role="footer" diff_index="0" index="one" class="layout one i last_layout w_headline w_title w_separator w_decoration w_leader w_trailer w_icon w_short_headline w_short_title layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-cinema-l-one-3"><div kind="layout" style="position: relative" sequence="one" diff_index="0" index="one" class="colors-use-local w_titles layout one i first_layout last_layout footer layout one" id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-cinema-l-one-3-l-one"></div><style id="u-58477be7-6a8e-4ff4-8ea9-7ddd96859cc9-color">body{background-color: rgba(201, 224, 187, 1)}</style></section></div><script href="./client.js">(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*! Hammer.JS - v1.1.3 - 2014-05-20
  * http://eightmedia.github.io/hammer.js
  *
@@ -1406,9 +1453,11 @@ global.Hamburger = require('./hamburger');
 
 global.Highlighter = require('./highlighter');
 
+global.Player = require('./player');
+
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./animator":3,"./hamburger":4,"./highlighter":5,"./paginator":7,"hammerjs/hammer.min.js":1,"picturefill/dist/picturefill.min.js":2}],7:[function(require,module,exports){
+},{"./animator":3,"./hamburger":4,"./highlighter":5,"./paginator":7,"./player":8,"hammerjs/hammer.min.js":1,"picturefill/dist/picturefill.min.js":2}],7:[function(require,module,exports){
 var appendPage, mainpage, page, ref, ref1, urls;
 
 page = require('./reflow');
@@ -1509,7 +1558,192 @@ module.exports = function() {
 };
 
 
-},{"./reflow":8}],8:[function(require,module,exports){
+},{"./reflow":9}],8:[function(require,module,exports){
+var Player, Youtube, iframe, revealed, rgb2hex;
+
+iframe = null;
+
+Youtube = null;
+
+Player = function(id, src, width, height, color, bg) {
+  if (src.indexOf('youtube') > -1) {
+    src += '&color=white&theme=light&modestbranding=1';
+  }
+  src = src.replace('COLOR', color).replace('BG', bg);
+  if (location.protocol !== 'https:') {
+    src = src.replace('https:', 'http:');
+  }
+  iframe = document.createElement('iframe');
+  iframe.id = id;
+  iframe.setAttribute('allowfullscreen', '');
+  iframe.src = src;
+  iframe.width = width;
+  iframe.height = height;
+  iframe.style.width = '100%';
+  iframe.style.height = '100%';
+  iframe.style.left = 0;
+  iframe.style.right = 0;
+  iframe.style.position = 'absolute';
+  iframe.style.opacity = 0.2;
+  iframe.onload = function() {
+    return iframe.style.opacity = 1;
+  };
+  return iframe;
+};
+
+revealed = null;
+
+Player.reveal = function(iframe) {
+  var diff, i, left, len, parent, play, ref, ref1, sibling, target, top, translateX, translateY;
+  while (target = (target || iframe).parentNode) {
+    if ((ref = target.classList) != null ? ref.contains('media') : void 0) {
+      if (target.parentNode.classList.contains('group')) {
+        parent = target.parentNode;
+      } else {
+        parent = target;
+      }
+      revealed = iframe;
+      play = parent.getElementsByClassName('play')[0];
+      left = target.offsetWidth - play.offsetLeft - play.offsetWidth;
+      top = -play.offsetTop;
+      play.style.webkitTransformOrigin = 'top right';
+      play.style.webkitTransform = 'translateX(' + left + 'px) translateY(' + top + 'px) scale(0.5)';
+      target.classList.add('revealed');
+      ref1 = parent.parentNode.childNodes;
+      for (i = 0, len = ref1.length; i < len; i++) {
+        sibling = ref1[i];
+        if (sibling.nodeType === 1 && sibling !== parent) {
+          translateX = translateY = null;
+          if ((diff = sibling.offsetLeft + sibling.offsetWidth - parent.offsetLeft) > 2 && parent.offsetLeft >= sibling.offsetLeft) {
+            translateX = -diff;
+          }
+          if ((diff = target.offsetLeft + target.offsetWidth - sibling.offsetLeft) > 2 && parent.offsetLeft <= sibling.offsetLeft) {
+            if (!translateX || Math.abs(diff) < Math.abs(translateX)) {
+              translateX = diff;
+            }
+          }
+          if ((diff = sibling.offsetTop + sibling.offsetHeight - parent.offsetTop) > 2 && parent.offsetTop >= sibling.offsetTop) {
+            translateY = -diff;
+          }
+          if ((diff = target.offsetTop + target.offsetHeight - sibling.offsetTop) > 2 && parent.offsetTop <= sibling.offsetTop) {
+            if (!translateY || Math.abs(diff) < Math.abs(translateY)) {
+              translateY = diff;
+            }
+          }
+          if (Math.abs(translateX) > Math.abs(translateY)) {
+            sibling.style.webkitTransform = 'translateY(' + translateY + 'px)';
+          } else {
+            sibling.style.webkitTransform = 'translateX(' + translateX + 'px)';
+          }
+          console.log(translateX, translateY, sibling);
+        }
+      }
+    }
+  }
+};
+
+Player.hide = function(iframe) {
+  var i, len, parent, play, ref, ref1, sibling;
+  while (parent = (parent || iframe).parentNode) {
+    if ((ref = parent.classList) != null ? ref.contains('revealed') : void 0) {
+      parent.classList.remove('revealed');
+      if (parent.parentNode.classList.contains('group')) {
+        parent = parent.parentNode;
+      }
+      play = parent.getElementsByClassName('play')[0];
+      play.style.webkitTransform = '';
+      ref1 = parent.parentNode.childNodes;
+      for (i = 0, len = ref1.length; i < len; i++) {
+        sibling = ref1[i];
+        sibling.style.webkitTransform = '';
+      }
+    }
+  }
+  return revealed = null;
+};
+
+window.addEventListener('resize', function() {
+  return setTimeout(function() {
+    return requestAnimationFrame(function() {
+      if (revealed) {
+        if (revealed.offsetWidth) {
+          return Player.reveal(revealed);
+        } else {
+          return Player.stop(revealed);
+        }
+      }
+    });
+  }, 10);
+});
+
+Player.stop = function(iframe) {
+  var old;
+  old = iframe;
+  iframe.style.opacity = 0;
+  setTimeout(function() {
+    var ref;
+    return (ref = old.parentNode) != null ? ref.removeChild(old) : void 0;
+  }, 300);
+  Player.hide(iframe);
+  return iframe = null;
+};
+
+document.addEventListener('click', function(e) {
+  var bg, color, header, parent, play, ref, ref1, results, styles, target;
+  target = e.target;
+  results = [];
+  while (target) {
+    if ((ref = target.classList) != null ? ref.contains('media') : void 0) {
+      if (play = target.getElementsByClassName('play')[0]) {
+        if ((iframe != null ? iframe.parentNode : void 0) === target) {
+          Player.stop(iframe);
+        } else {
+          if (iframe) {
+            Player.stop(iframe);
+          }
+          color = bg = null;
+          header = (ref1 = target.parentNode.parentNode.getElementsByClassName('title')[0]) != null ? ref1.firstChild : void 0;
+          parent = header || play;
+          while (parent) {
+            if (parent.nodeType === 1) {
+              styles = window.getComputedStyle(parent);
+              if (styles.color.indexOf('rgba') === -1 || !styles.color.match(/,\s*0\)/)) {
+                if (color == null) {
+                  color = styles.color;
+                }
+              }
+              if (styles['background-color'].indexOf('rgba') === -1 || !styles['background-color'].match(/,\s*0\)/)) {
+                if (bg == null) {
+                  bg = styles['background-color'];
+                }
+              }
+            }
+            parent = parent.parentNode;
+          }
+          iframe = Player(play.id + '-player', play.getAttribute('data-src'), play.getAttribute('data-width'), play.getAttribute('data-height'), rgb2hex(color), rgb2hex(bg));
+          target.appendChild(iframe);
+          Player.reveal(iframe);
+        }
+        e.preventDefault();
+        break;
+      }
+    }
+    results.push(target = target.parentNode);
+  }
+  return results;
+});
+
+rgb2hex = function(rgb) {
+  rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+  if (rgb && rgb.length === 4) {
+    return ("0" + parseInt(rgb[1], 10).toString(16)).slice(-2) + ("0" + parseInt(rgb[2], 10).toString(16)).slice(-2) + ("0" + parseInt(rgb[3], 10).toString(16)).slice(-2);
+  }
+};
+
+window.exports = window.Player = Player;
+
+
+},{}],9:[function(require,module,exports){
 module.exports = {
   reflow: function(container) {
     var counter, heights, hidden, hole, holed, holes, i, id, ids, index, j, k, l, last, layout, layouts, len, len1, len2, len3, m, mutations, name, node, ref, ref1, ref2, stack, stacks;
@@ -1774,7 +2008,7 @@ module.exports = function(callback) {
   } else {
     protocol = '';
   }
-  url = protocol + "//cdn.thegrid.io/gss/gss-document/1.2.4/gss.document.parser.js";
+  url = protocol + "//cdn.thegrid.io/gss/gss-document/1.2.8/gss.document.parser.js";
   if (location.toString().indexOf('//localhost:8080') > -1) {
     return module.exports.load(protocol + "//localhost:8080/node_modules/gss-document/dist/gss.document.parser.js", callback, function() {
       return module.exports.load(url, callback);
